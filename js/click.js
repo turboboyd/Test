@@ -1,57 +1,51 @@
-$(document).ready(function(){
-    $('.products-slider').slick({
-        arrows: false,
-        dots: false,
-        speed: 1000,
-
-        // autoplay: true,
-        // autoplaySpeed: 5000,
-        slidesToShow: 8,
-        variableWidth: true,
-        infinite: false,
-        // slidesToShow: 6,
-        // slidesPerRow: 4,
-        // slidesToScroll: 1,
-        responsive: [
-         {
-            breakpoint: 1200,
-                settings: {
-                    slidesPerRow: 1,
-                    
-            }
-        },
-        {
-            breakpoint: 1166,
-            settings: {
-            variableWidth: true,
-            infinite: true,
-                dots: true,
-            slidesToShow: 3,
-                slidesPerRow: 1,
-            }
-        },
-        {
-            breakpoint: 768,
-            settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            dots: true,
-            }
-        },
-        {
-            breakpoint: 375,
-            settings: {
-            slidesToShow: 2,
-            slidesPerRow: 2,
-            dots: true,
-            }
-        }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
-        ]
-    });
-});
+// $(document).ready(function(){
+//     $('.products-slider').slick({
+//         arrows: false,
+//         dots: true,
+//         speed: 1000,
+//         autoplay: true,
+//         autoplaySpeed: 5000,
+//         slidesToShow: 8,
+//         variableWidth: true,
+//         infinite: false,
+//         slidesToShow: 6,
+//         responsive: [
+//         {
+//             breakpoint: 1166,
+//             settings: {
+//             variableWidth: true,
+//             infinite: true,
+//                 dots: true,
+//             slidesToShow: 3,
+//                 slidesPerRow: 1,
+//             }
+//         },
+//         {
+//             breakpoint: 768,
+//             settings: {
+//             slidesToShow: 1,
+//             slidesToScroll: 1,
+//             dots: true,
+//             }
+//         },
+//         {
+//             breakpoint: 375,
+//             settings: {
+//             slidesToShow: 2,
+//             slidesPerRow: 2,
+//                 dots: true,
+//                     rows: 2,
+//             slidesPerRow: 1,
+//             }
+//             },
+//                 {
+//             breakpoint: 1200,
+//             settings: "unslick"
+//         }
+        
+//         ]
+//     });
+// });
 
 // $('.products-slider').slick({
 //   dots: true,
@@ -88,3 +82,65 @@ $(document).ready(function(){
 //     // instead of a settings object
 //   ]
 // });
+
+$(document).ready(function(){
+    var productsSlider = $('.products-slider');
+
+    function disableSlider() {
+        if ($(window).width() < 1200) {
+            if (!productsSlider.hasClass('slick-initialized')) {
+                productsSlider.slick({
+                    arrows: false,
+                    dots: true,
+                    speed: 1000,
+                    autoplay: true,
+                    autoplaySpeed: 5000,
+                    slidesToShow: 8,
+                    variableWidth: true,
+                    infinite: false,
+                    slidesToShow: 6,
+                    rows: window,
+                    responsive: [
+                        {
+                            breakpoint: 1166,
+                            settings: {
+                                variableWidth: true,
+                                infinite: true,
+                                dots: true,
+                                slidesToShow: 1,
+                                slidesPerRow: 1,
+                            }
+                        },
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                dots: true,
+                            }
+                        },
+                        {
+                            breakpoint: 375,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesPerRow: 1,
+                                dots: true,
+                                slidesPerRow: 1,
+                            }
+                        }
+                    ]
+                });
+            }
+        } else {
+            if (productsSlider.hasClass('slick-initialized')) {
+                productsSlider.slick('unslick');
+            }
+        }
+    }
+
+    disableSlider();
+
+    $(window).on('resize', function() {
+        disableSlider();
+    });
+});

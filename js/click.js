@@ -93,13 +93,13 @@ $(document).ready(function(){
                     arrows: false,
                     dots: true,
                     speed: 1000,
-                    autoplay: true,
-                    autoplaySpeed: 5000,
-                    slidesToShow: 8,
+                    // autoplay: true,
+                    // autoplaySpeed: 5000,
+                    easing: 'ease',
                     variableWidth: true,
-                    infinite: false,
-                    slidesToShow: 6,
-                    rows: window,
+                    infinite: true,
+                    touchThreshold: 10,
+                    waitForAnimate: false,
                     responsive: [
                         {
                             breakpoint: 1166,
@@ -122,12 +122,20 @@ $(document).ready(function(){
                         {
                             breakpoint: 375,
                             settings: {
-                                slidesToShow: 1,
-                                slidesPerRow: 1,
                                 dots: true,
                                 slidesPerRow: 1,
                             }
-                        }
+                        },
+                                                {
+                            breakpoint: 374,
+                            settings: {
+                                variableWidth: false,
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                slidesPerRow: 1,
+                                dots: true,
+                            }
+                        },
                     ]
                 });
             }
